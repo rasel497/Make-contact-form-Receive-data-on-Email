@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Contact form</title>
+</head>
+
+<body>
+
+ 
+
+    <div class="container">
+
+        <form>
+
+            <form onsubmit="sendEmail(); rest();">
+                <h3>Get In Touch</h3>
+                <input type="text" id="name" placeholder="Your name" required>
+                <input type="email" id="email" placeholder="E-mail id" required>
+                <input type="phone" id="phone" placeholder="Phone no. " required>
+                <textarea id="message" rows="4" placeholder="How can we help you?"></textarea>
+                <button id="btn">Send</button>
+            </form>
+    </div>
+
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+
+    <script>
+
+        var btn = document.getElementById('btn');
+        btn.addEventListener('click', function (e) {
+            e.preventDefault()
+            
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var message = document.getElementById('message').value;
+            var body = 'name: ' + name + '<br/> email: ' + email + '<br/> phone: ' + phone + '<br/> message: ' + message;
+
+            Email.send({
+
+                //SecureToken: "Use your secure token",
+                Host: "smtp.gmail.com",
+                Username: "rasel.csediu44@gmail.com",
+                Password: "nfoqprvobrcxlsqh",
+                To: 'rasel.csediu44@gmail.com',
+                From: email,
+                Subject: message,
+                Body: body
+            }).then(
+                message => alert("Sent Successfully.")
+            );
+         })
+
+    </script>
+
+
+</body>
+
+</html>
